@@ -70,11 +70,17 @@ func httpRuleToPathMap(opts options.Options, md protoreflect.MethodDescriptor, r
 	pathItem := &v3.PathItem{}
 
 	fd := md.ParentFile()
-	service := md.Parent().(protoreflect.ServiceDescriptor)
+	var tags []string
+
+	if !opts.DisableServiceNameTag {
+		service := md.Parent().(protoreflect.ServiceDescriptor)
+		tags = []string{string(service.FullName())}
+	}
+
 	op := &v3.Operation{
 		Summary:     string(md.Name()),
 		OperationId: string(md.FullName()),
-		Tags:        []string{string(service.FullName())},
+		Tags:        tags,
 		Description: util.FormatComments(fd.SourceLocations().ByDescriptor(md)),
 	}
 

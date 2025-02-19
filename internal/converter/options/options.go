@@ -41,6 +41,8 @@ type Options struct {
 	WithServiceDescriptions bool
 	// IgnoreGoogleapiHTTP set to true will cause service to always generate OpenAPI specs for connect endpoints, and ignore any google.api.http options.
 	IgnoreGoogleapiHTTP bool
+	// DisableServiceNameTag set to true will
+	DisableServiceNameTag bool
 	// Services filters which services will be used for generating OpenAPI spec.
 	Services []protoreflect.FullName
 
@@ -102,6 +104,8 @@ func FromString(s string) (Options, error) {
 			opts.WithServiceDescriptions = true
 		case param == "ignore-googleapi-http":
 			opts.IgnoreGoogleapiHTTP = true
+		case param == "disable-service-name-tag":
+			opts.DisableServiceNameTag = true
 		case strings.HasPrefix(param, "content-types="):
 			for _, contentType := range strings.Split(param[14:], ";") {
 				contentType = strings.TrimSpace(contentType)

@@ -31,6 +31,7 @@ func TestGeneratorWithOptions(t *testing.T) {
 			WithIncludeNumberEnumValues(true),
 			WithStreaming(true),
 			WithDebug(true),
+			WithDisableServiceNameTag(true),
 			WithProtoAnnotations(true),
 		)
 		require.NoError(t, err)
@@ -48,6 +49,7 @@ func TestGeneratorWithOptions(t *testing.T) {
 			t,
 			[]*descriptorpb.FileDescriptorProto{protodesc.ToFileDescriptorProto(elizav1.File_connectrpc_eliza_v1_eliza_proto)},
 			generator.req.ProtoFile)
+		assert.Equal(t, true, generator.options.DisableServiceNameTag)
 	})
 }
 

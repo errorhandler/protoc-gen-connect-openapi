@@ -218,3 +218,11 @@ func WithPathPrefix(prefix string) Option {
 		return nil
 	}
 }
+
+// WithDisableServiceNameTag
+func WithDisableServiceNameTag(enabled bool) Option {
+	return func(g *generator) error {
+		g.options.DisableServiceNameTag = enabled
+		return nil
+	}
+}

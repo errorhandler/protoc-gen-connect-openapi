@@ -222,13 +222,20 @@ func mergeResponse(existing, new *v3.Response) {
 
 func methodToOperaton(opts options.Options, method protoreflect.MethodDescriptor, returnGet bool) *v3.Operation {
 	fd := method.ParentFile()
-	service := method.Parent().(protoreflect.ServiceDescriptor)
 	loc := fd.SourceLocations().ByDescriptor(method)
+
+	var tags []string
+	if !opts.DisableServiceNameTag {
+		service := method.Parent().(protoreflect.ServiceDescriptor)
+		panic("setting tags")
+		tags = []string{string(service.FullName())}
+	}
+
 	op := &v3.Operation{
 		Summary:     string(method.Name()),
 		OperationId: string(method.FullName()),
 		Deprecated:  util.IsMethodDeprecated(method),
-		Tags:        []string{string(service.FullName())},
+		Tags:        tags,
 		Description: util.FormatComments(loc),
 	}
 

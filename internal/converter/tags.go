@@ -11,6 +11,11 @@ import (
 
 func fileToTags(opts options.Options, fd protoreflect.FileDescriptor) []*base.Tag {
 	tags := []*highbase.Tag{}
+
+	if opts.DisableServiceNameTag {
+		return tags
+	}
+
 	services := fd.Services()
 	for i := 0; i < services.Len(); i++ {
 		service := services.Get(i)
