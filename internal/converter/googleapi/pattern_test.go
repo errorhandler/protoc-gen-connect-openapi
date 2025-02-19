@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/googleapi"
+	"github.com/errorhandler/protoc-gen-connect-openapi/internal/converter/googleapi"
 )
 
 func TestRunPathPatternLexer(t *testing.T) {

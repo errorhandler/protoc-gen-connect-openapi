@@ -12,9 +12,9 @@ import (
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/options"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/schema"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/util"
+	"github.com/errorhandler/protoc-gen-connect-openapi/internal/converter/options"
+	"github.com/errorhandler/protoc-gen-connect-openapi/internal/converter/schema"
+	"github.com/errorhandler/protoc-gen-connect-openapi/internal/converter/util"
 )
 
 func MakePathItems(opts options.Options, md protoreflect.MethodDescriptor) *orderedmap.Map[string, *v3.PathItem] {
